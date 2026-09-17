@@ -1,0 +1,9 @@
+.git
+.github
+.cache
+bin
+dist
+demo-output
+output-images
+coverage.*
+*.prof

@@ -62,9 +62,9 @@ is declared so the Collector can isolate fan-out consumers correctly.
    - [x] Test invalid config, whole-batch rejection, shutdown, concurrent inputs.
    - Gate: real network integration suite and demo pass.
 5. **Release engineering and operational hardening**
-   - [ ] CI, formatting/vet/race checks, fuzzing, allocation benchmarks.
-   - [ ] Container packaging, Make targets, dependency updates, release workflow.
-   - [ ] Review configuration limits, error paths, mutable state, and dependencies.
+   - [x] CI, formatting/vet/race checks, fuzzing, allocation benchmarks.
+   - [x] Container packaging, Make targets, dependency updates, release workflow.
+   - [x] Review configuration limits, error paths, mutable state, and dependencies.
    - Gate: full quality checks, fuzz smoke, benchmark, and security scan; record
      any unavailable checks honestly rather than claiming production readiness.
 6. **Documentation and final evidence**

@@ -1,0 +1,12 @@
+services:
+  collector:
+    build: .
+    ports:
+      - '127.0.0.1:4318:4318'
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    mem_limit: 384m
+    cpus: 1.0
+    pids_limit: 64
+    stop_grace_period: 15s

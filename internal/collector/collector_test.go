@@ -12,7 +12,7 @@ import (
 
 func TestExampleConfigurations(t *testing.T) {
 	t.Setenv("OTEL_REDACTOR_BACKEND", "https://backend.example.test:4318")
-	for _, name := range []string{"collector.yaml", "production.yaml"} {
+	for _, name := range []string{"collector.yaml", "production.yaml", "container.yaml"} {
 		t.Run(name, func(t *testing.T) {
 			col, err := otelcol.NewCollector(Settings("test", filepath.Join("..", "..", "examples", name)))
 			if err != nil {
