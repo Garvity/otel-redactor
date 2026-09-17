@@ -11,6 +11,8 @@ import (
 	"go.opentelemetry.io/collector/processor"
 	"go.opentelemetry.io/collector/processor/processorhelper"
 	"go.opentelemetry.io/otel/metric"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 var componentType = component.MustNewType("otelredactor")
@@ -51,7 +53,10 @@ func createTraces(ctx context.Context, set processor.Settings, cfg component.Con
 			if err != nil {
 				rejected.Add(ctx, 1)
 				if errors.Is(err, errDepth) || errors.Is(err, errSize) {
-					err = consumererror.NewPermanent(err)
+					// Current OTLP receivers map bare permanent errors to Internal.
+					// State explicitly that the payload violates the configured policy.
+					// The error contains only a constant message, never telemetry.
+					err = consumererror.NewPermanent(status.Error(codes.InvalidArgument, err.Error()))
 				}
 				return ptrace.Traces{}, err
 			}

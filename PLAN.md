@@ -57,9 +57,9 @@ is declared so the Collector can isolate fan-out consumers correctly.
    - [x] Factory tests, unsupported signals, telemetry assertions.
    - Gate: build, component tests, Collector config validation pass.
 4. **Executable demonstration and integration coverage**
-   - [ ] Synthetic fixture; OTLP HTTP receiver -> processor -> OTLP HTTP sink.
-   - [ ] Assert secrets absent and trace structure/preserved values unchanged.
-   - [ ] Test invalid config, whole-batch rejection, shutdown, concurrent inputs.
+   - [x] Synthetic fixture; OTLP HTTP receiver -> processor -> OTLP HTTP sink.
+   - [x] Assert secrets absent and trace structure/preserved values unchanged.
+   - [x] Test invalid config, whole-batch rejection, shutdown, concurrent inputs.
    - Gate: real network integration suite and demo pass.
 5. **Release engineering and operational hardening**
    - [ ] CI, formatting/vet/race checks, fuzzing, allocation benchmarks.
