@@ -1,0 +1,47 @@
+# Local exploration only. All demo values must be synthetic.
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 127.0.0.1:4317
+      http:
+        endpoint: 127.0.0.1:4318
+        max_request_body_size: 4194304
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+    spike_limit_mib: 64
+  otelredactor:
+    delete_keys: [authorization, api.key, password]
+    patterns:
+      - '(?i)[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}'
+      - '(?i)bearer\s+[a-z0-9._~+/=\-]+'
+    replacement: '[REDACTED]'
+    scrub_text_fields: true
+    max_depth: 32
+    max_string_bytes: 1048576
+  batch:
+    timeout: 1s
+    send_batch_size: 512
+    send_batch_max_size: 1024
+exporters:
+  debug:
+    verbosity: basic
+service:
+  telemetry:
+    logs:
+      level: info
+    metrics:
+      level: basic
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 127.0.0.1
+                port: 8888
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, otelredactor, batch]
+      exporters: [debug]

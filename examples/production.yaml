@@ -1,0 +1,48 @@
+# Review TLS/auth, limits, and rules for your environment before deployment.
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 127.0.0.1:4318
+        max_request_body_size: 4194304
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+    spike_limit_mib: 64
+  otelredactor:
+    delete_keys: [authorization, api.key, password]
+    patterns:
+      - '(?i)[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}'
+      - '(?i)bearer\s+[a-z0-9._~+/=\-]+'
+  batch:
+    timeout: 1s
+    send_batch_size: 512
+    send_batch_max_size: 1024
+exporters:
+  otlp_http:
+    endpoint: ${env:OTEL_REDACTOR_BACKEND}
+    timeout: 10s
+    sending_queue:
+      enabled: true
+      queue_size: 256
+    retry_on_failure:
+      enabled: true
+      max_elapsed_time: 60s
+service:
+  telemetry:
+    logs:
+      level: info
+    metrics:
+      level: basic
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: 127.0.0.1
+                port: 8888
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, otelredactor, batch]
+      exporters: [otlp_http]

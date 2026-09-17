@@ -52,9 +52,9 @@ is declared so the Collector can isolate fan-out consumers correctly.
    - [x] Unit tests for preservation, matching, nesting, limits, and cancellation.
    - Gate: focused Go tests pass.
 3. **Collector component and runnable distribution**
-   - [ ] Factory, lifecycle, next-consumer errors, and privacy-safe counters.
-   - [ ] Version-pinned Collector distribution and validated example configs.
-   - [ ] Factory tests, unsupported signals, telemetry assertions.
+   - [x] Factory, lifecycle, next-consumer errors, and privacy-safe counters.
+   - [x] Version-pinned Collector distribution and validated example configs.
+   - [x] Factory tests, unsupported signals, telemetry assertions.
    - Gate: build, component tests, Collector config validation pass.
 4. **Executable demonstration and integration coverage**
    - [ ] Synthetic fixture; OTLP HTTP receiver -> processor -> OTLP HTTP sink.
