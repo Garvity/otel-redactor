@@ -47,9 +47,9 @@ is declared so the Collector can isolate fan-out consumers correctly.
    - [x] Independent Git repository.
    - Gate: review directory boundaries and commit the plan before implementation.
 2. **Configuration and transformation engine**
-   - [ ] Strict configuration validation and immutable precompiled rules.
-   - [ ] Recursive deletion/redaction at every supported trace location.
-   - [ ] Unit tests for preservation, matching, nesting, limits, and cancellation.
+   - [x] Strict configuration validation and immutable precompiled rules.
+   - [x] Recursive deletion/redaction at every supported trace location.
+   - [x] Unit tests for preservation, matching, nesting, limits, and cancellation.
    - Gate: focused Go tests pass.
 3. **Collector component and runnable distribution**
    - [ ] Factory, lifecycle, next-consumer errors, and privacy-safe counters.
