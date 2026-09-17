@@ -1,6 +1,6 @@
 # otel-redactor implementation plan
 
-Date: 2026-09-17. Status: in progress.
+Date: 2026-09-17. Status: complete.
 
 ## Goal and boundaries
 
@@ -68,10 +68,10 @@ is declared so the Collector can isolate fan-out consumers correctly.
    - Gate: full quality checks, fuzz smoke, benchmark, and security scan; record
      any unavailable checks honestly rather than claiming production readiness.
 6. **Documentation and final evidence**
-   - [ ] README, configuration reference, architecture/operations documentation.
-   - [ ] Record measured validation and benchmark results with environment.
-   - [ ] Render actual verified demo output into `output-images/` and inspect it.
-   - [ ] Complete plan and commit final artifacts with a clean working tree.
+   - [x] README, configuration reference, architecture/operations documentation.
+   - [x] Record measured validation and benchmark results with environment.
+   - [x] Render actual verified demo output into `output-images/` and inspect it.
+   - [x] Complete plan and commit final artifacts with a clean working tree.
    - Gate: documented quick start reproduced, all final checks pass.
 
 ## Verification strategy
@@ -98,3 +98,10 @@ Logs/metrics pipelines, automated PII discovery, reversible tokenization,
 dynamic config management, Kubernetes deployment automation, hosted UI, and
 claims of third-party security audit. Regex policies only protect configured
 patterns; encoded values and attributes not covered by a rule can survive.
+
+## Completion record
+
+All six milestones completed. Detailed commands, coverage, benchmark medians,
+security findings, and verification limits are recorded in `docs/validation.md`.
+The final rendered demo report was visually inspected; its only image output is
+`output-images/final-output.png`. The local repository is ready for review.
