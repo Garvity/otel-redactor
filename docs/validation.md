@@ -1,5 +1,9 @@
 # Local validation evidence
 
+**Update:** The [2026-09-18 runtime audit](runtime-verification-2026-09-18.md)
+adds live gRPC/protobuf, TLS export/retry, Prometheus, shutdown-flush, and Docker
+traffic checks. The original measurements below remain dated 2026-09-17.
+
 Verified on **2026-09-17** on macOS/arm64, Apple M1 (8 logical CPUs), Go 1.27.1.
 Collector dependencies: v0.161.0 / v1.67.0. Docker engine: 29.4.0 through OrbStack.
 All telemetry fixtures are synthetic. These results describe this local build;

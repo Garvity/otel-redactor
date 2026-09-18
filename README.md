@@ -122,6 +122,14 @@ filesystem, drops Linux capabilities, and sets CPU/memory/PID limits. Stop with
 | `make vuln` | Pinned govulncheck scanner against the current database |
 | `make container-check` | Build and validate the non-root image without network |
 
+After `make build`, `make demo`, and `make container-check`, run
+`python3 scripts/smoke_runtime.py --docker` to exercise the actual CLI and Docker
+container with synthetic traffic, invalid requests, live metrics, and SIGTERM.
+Omit `--docker` to check only the native executable. The script uses ephemeral
+loopback ports and stops all processes/containers it creates. It writes
+`demo-output/runtime-checks.json`. See the
+[runtime feature audit](docs/runtime-verification-2026-09-18.md) for the latest results.
+
 See [validation results](docs/validation.md), [architecture](docs/architecture.md),
 [operations](docs/operations.md), and the completed [milestone plan](PLAN.md).
 CI is configured for Go 1.26/1.27; its hosted execution begins after this local
